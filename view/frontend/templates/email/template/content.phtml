@@ -1,0 +1,25 @@
+<?php
+/** @var $block Mentalworkz\EmailContent\Block\Content */
+/** @var $viewModel Mentalworkz\EmailContent\ViewModel\Email\EmailContent */
+$viewModel = $block->getViewModel();
+$emailContent = $viewModel->getEmailContent($block->getIdentifier(), $block->getStoreId());
+
+foreach($emailContent as $content):
+    $contentValid = $block->validateContentDisplay($content);
+    if($contentValid):
+
+        $wrapperConfig = $block->getContentTableWrapper($content);
+        if($wrapperConfig['wrapper']):
+            $padding = ($wrapperConfig['padding']) ? 'padding:' . $wrapperConfig['padding'] . 'px;' : '';
+            $maxWidth = ($wrapperConfig['maxwidth']) ? 'max-width:' . $wrapperConfig['maxwidth'] . ';' : '';
+            echo '<table style="width:100%; ' . $maxWidth . '"><tr><td style="' . $padding . '">';
+        endif;
+
+        echo $block->getContentHtml($content);
+
+        if($wrapperConfig['wrapper']):
+            echo '</td></tr></table>';
+        endif;
+
+    endif;
+endforeach;

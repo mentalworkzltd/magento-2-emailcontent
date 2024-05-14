@@ -1,0 +1,26 @@
+{
+  "name": "mentalworkz/module-email-content",
+  "description": "Mentalworkz Email Content Extension",
+  "require": {
+    "php": ">=7.1"
+  },
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Mentalworkz",
+      "email": "mentalworkzltd@gmail.com",
+      "homepage": "https://www.mentalworkz.co.uk",
+      "role": "Technical Support"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Mentalworkz\\EmailContent\\": ""
+    }
+  }
+}

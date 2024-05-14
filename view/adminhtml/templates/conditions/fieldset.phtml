@@ -1,0 +1,54 @@
+<?php
+/** @var $block Mentalworkz\EmailContent\Block\Adminhtml\Edit\Conditions */
+/** @var $viewModel \Mentalworkz\EmailContent\ViewModel\Admin\EmailContent */
+$viewModel = $block->getData('viewModel');
+$conditionConfig = $viewModel->getConditionsConfig();
+?>
+<div id="emailcontent_conditions">
+    <div class="info">
+        <p><?= __('Configure conditions that should be met before the targeted content should be displayed.') ?></p>
+        <p><i><?= __('For multiple values in condition input fields, seperate with commas. EG val1,val2,val3...') ?></i>
+        </p>
+    </div>
+    <p class="error-message" style="display:none;"></p>
+    <div class="inner-wrapper">
+        <h4>
+            <span><?= __('If') ?></span>
+            <select name="scope_1">
+                <option value="all"><?= __('ALL') ?></option>
+                <option value="any"><?= __('ANY') ?></option>
+            </select>
+            <span><?= __('of these conditions are') ?></span>
+            <select name="scope_2">
+                <option value="true"><?= __('TRUE') ?></option>
+                <option value="false"><?= __('FALSE') ?></option>
+            </select>
+        </h4>
+        <ul class="conditions">
+            <li id="conditions_template" style="visibility: hidden;height: 1px">
+                <a href="javascript:void(0)" class="label choose_condition">
+                    <img src="<?= $block->assetRepo->getUrl('images/rule_component_add.gif') ?>"
+                         class="rule-param-add v-middle" title="Add">
+                </a>
+                <select name="conditions_list" style="display: none">
+                    <option><?= __('Please choose a condition to add') ?></option>
+                </select>
+                <div class="condition"></div>
+                <a href="javascript:void(0)" class="remove_condition template rule-param-remove"
+                   title="<?= __('Remove') ?>" style="display:none;">
+                    <img src="<?= $block->assetRepo->getUrl('images/rule_component_remove.gif') ?>"
+                         alt="<?= __('Remove') ?>" class="v-middle">
+                </a>
+            </li>
+        </ul>
+        <input data-form-part="emailcontent_form" type="hidden" name="display_conditions" value=''/>
+    </div>
+</div>
+<script>
+    requirejs([
+        "emailcontentConditions",
+    ], function (ecConditions) {
+        /* mageinit will not working in any form in this template */
+        ecConditions(<?= json_encode($conditionConfig, JSON_HEX_APOS) ?>);
+    });
+</script>

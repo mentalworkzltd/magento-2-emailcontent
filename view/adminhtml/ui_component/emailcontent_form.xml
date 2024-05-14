@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">emailcontent_form.grid_record_grid_list_data_source</item>
+            <item name="deps" xsi:type="string">emailcontent_form.grid_record_grid_list_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Add New</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">emailcontent_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="save" xsi:type="string">Mentalworkz\EmailContent\Block\Adminhtml\Edit\Buttons\SaveButton</item>
+            <item name="delete" xsi:type="string">Mentalworkz\EmailContent\Block\Adminhtml\Edit\Buttons\DeleteButton</item>
+            <item name="back" xsi:type="string">Mentalworkz\EmailContent\Block\Adminhtml\Edit\Buttons\BackButton</item>
+        </item>
+    </argument>
+
+    <dataSource name="grid_record_grid_list_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Mentalworkz\EmailContent\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">grid_record_grid_list_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">content_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/*/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+    <fieldset name="general_information">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">General Information</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="title" sortOrder="10" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Title</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description>Descriptive title to identify the content in the grid list</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="identifier" sortOrder="15" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Identifier</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-code" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description>Identifier used in the directives placed in emails. Multiple targeted content entities may use the same identifier, to show
+                        different content in the same area of the email based upon different conditions. In the case of multiple targeted content entities
+                        conditions match, use the sort order field to define which should take priority. See the documentation.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="directive" sortOrder="16" formElement="textarea">
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Email Template Directive</label>
+                <disabled>1</disabled>
+                <tooltip>
+                    <description>Place this directive in your email template for this content to display.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="description" sortOrder="20" formElement="textarea">
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Description</label>
+                <tooltip>
+                    <description>More descriptive information about the targeted content.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="sort_order" sortOrder="25" formElement="input">
+            <settings>
+                <dataType>number</dataType>
+                <visible>true</visible>
+                <label translate="true">Sort Order</label>
+                <tooltip>
+                    <description>If multiple targeted content entities with the same identifier match, this field determines which entity takes priority.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="is_active" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Is Active</label>
+                <visible>true</visible>
+                <dataScope>is_active</dataScope>
+                <tooltip>
+                    <description>Enable/disable the targeted content.</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="number">1</item>
+                                <item name="label" xsi:type="string" translate="true">Active</item>
+                            </option>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="number">0</item>
+                                <item name="label" xsi:type="string" translate="true">Inactive</item>
+                            </option>
+                        </options>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="store_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">emailcontent</item>
+                    <item name="dataScope" xsi:type="string">store_id</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="display_conditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Display Conditions</item>
+                <item name="sortOrder" xsi:type="number">30</item>
+            </item>
+        </argument>
+        <htmlContent name="conditions_serialized">
+            <block name="conditions_apply_to" class="Mentalworkz\EmailContent\Block\Adminhtml\Edit\Conditions">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">Mentalworkz\EmailContent\ViewModel\Admin\EmailContent</argument>
+                    <argument name="allowSelector" xsi:type="string">1</argument>
+                </arguments>
+            </block>
+        </htmlContent>
+    </fieldset>
+    <fieldset name="display_content">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Email Content</item>
+                <item name="sortOrder" xsi:type="number">40</item>
+            </item>
+        </argument>
+        <htmlContent name="content_wrapper">
+            <block name="content_wrapper_html_content_input_field">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">Mentalworkz\EmailContent\ViewModel\Admin\EmailContent</argument>
+                    <argument name="template" xsi:type="string">
+                        Mentalworkz_EmailContent::content/wrapper_field.phtml
+                    </argument>
+                </arguments>
+            </block>
+        </htmlContent>
+        <field name="content" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">content</item>
+		    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <label/>
+                <dataScope>content</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+    </fieldset>
+
+</form>

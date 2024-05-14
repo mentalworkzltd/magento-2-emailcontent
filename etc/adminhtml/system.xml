@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mwz_modules" translate="label" class="mwz_modules" sortOrder="100">
+            <label>Mentalworkz Modules</label>
+        </tab>
+        <section id="mwz_emailcontent" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Email Content</label>
+            <tab>mwz_modules</tab>
+            <resource>Mentalworkz_EmailContent::config</resource>
+            <group id="email_content" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Targeted Email Content</label>
+                <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>General Settings</label>
+                    <field id="isenabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="isdebugenabled" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable Debug Logging?</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>See log entries in var/log/mentalworkz/emailcontent.log</comment>
+                    </field>
+                </group>
+                <group id="content" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content Settings</label>
+                    <group id="display_conditions" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Display Conditions Settings</label>
+                        <comment>Settings related to the Display Conditions field</comment>
+                        <field id="product_attributes" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Display Condition Orderitem Attributes</label>
+                            <source_model>Mentalworkz\EmailContent\Model\Config\Source\ProductAttributes</source_model>
+                            <comment>Configurable option attributes ONLY! Others will not work. Some attributes are included by default, and so not included in the above list: name,price,sku</comment>
+                        </field>
+                    </group>
+                    <group id="wrapper" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Content Wrapper Settings</label>
+                        <comment>These settings can be disabled/overidden for specific email content blocks on the email content edit pages</comment>
+                        <field id="tablewrapper" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Include Table Wrapper?</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Enclose email content block HTML in a table with the settings below?</comment>
+                        </field>
+                        <field id="tablepadding" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Table Padding</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Enter a number of pixels, EG: 10</comment>
+                            <depends>
+                                <field id="mwz_emailcontent/email_content/content/wrapper/tablewrapper">1</field>
+                            </depends>
+                        </field>
+                        <field id="tablemaxwidth" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Table Max Width</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Enter a number including 'px' or '%'. EG: 600px or 100%</comment>
+                            <depends>
+                                <field id="mwz_emailcontent/email_content/content/wrapper/tablewrapper">1</field>
+                            </depends>
+                        </field>
+                    </group>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,54 @@
+<?php
+/** @var $viewModel \Mentalworkz\EmailContent\ViewModel\EmailContent */
+$viewModel = $block->getData('viewModel');
+$defaultWrapperConfig = $viewModel->getDefaultContentWrapperConfig();
+$contentWrapperConfig = $viewModel->getContentWrapper();
+$contentWrapperData = [
+    'default_content_wrapper' => $defaultWrapperConfig,
+    'content_wrapper' => $contentWrapperConfig
+];
+?>
+<div id="emailcontent_tablewrapper">
+    <div class="wrapper_toggle">
+        <div class="field_label">
+            <input type="checkbox" name="default_wrapper" value="1" checked="checked" />
+            <label><?= __('Use default wrapper settings?') ?></label>
+        </div>
+        <div class="admin__field-tooltip">
+            <a class="admin__field-tooltip-action action-help" target="_blank" tabindex="1"></a>
+            <div class="admin__field-tooltip-content" data-bind="html: tooltip.description"><?= __('Wrap the content in a table tag with default padding and width settings defined in the system configuration. Or override those settings for this specific email content.') ?></div>
+        </div>
+    </div>
+    <ul>
+        <li class="default">
+            <div class="default_settings">
+                <p><b><?= __('Default Settings:') ?></b>
+                    <span><?= __('Wrap in &lt;table /&gt; tag:') ?> <i><?= __($defaultWrapperConfig['wrapper'] ? 'Yes' : 'No') ?></i>,
+                    <?= __('Padding:') ?> <i><?= !is_null($defaultWrapperConfig['padding']) ? $defaultWrapperConfig['padding'] . 'px' : 'Not set' ?></i>,
+                    <?= __('Max Width:') ?> <i><?= !is_null($defaultWrapperConfig['maxwidth']) ? $defaultWrapperConfig['maxwidth'] : 'Not set' ?></i></span>
+                </p>
+            </div>
+        </li>
+        <li class="custom">
+            <p><b><?= __('Custom Settings:') ?></b>
+                <span><?= __('Wrap in &lt;table /&gt; tag:') ?>
+                    <select name="wrapper">
+                        <option value="0"><?= __('No') ?></option>
+                        <option value="1"><?= __('Yes') ?></option>
+                    </select>
+                </span>
+                <span><?= __('Padding:') ?> <input type="text" name="padding" value="" placeholder="<?= __('Enter number') ?>" />px</span>
+                <span><?= __('Max-width:') ?> <input type="text" name="maxwidth" value="" placeholder="<?= __('Enter number and px or %') ?>" /></span>
+            </p>
+        </li>
+    </ul>
+    <input data-form-part="emailcontent_form" type="hidden" name="content_wrapper" value='' />
+</div>
+<script>
+    requirejs([
+        "emailcontentWrapper",
+    ], function (ecWrapper) {
+        /* mageinit not working in any form in this template */
+        ecWrapper(<?= json_encode($contentWrapperData, JSON_HEX_APOS) ?>);
+    });
+</script>

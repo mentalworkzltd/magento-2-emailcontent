@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="email_content" resource="default" engine="innodb" comment="Email Content Table">
+        <column xsi:type="smallint" name="content_id" padding="6" unsigned="false" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Content Title"/>
+        <column xsi:type="varchar" name="identifier" nullable="false" length="255" comment="Content String Identifier"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="mediumtext" name="display_conditions" nullable="true" comment="Display Conditions Serialized"/>
+        <column xsi:type="text" name="content_wrapper" nullable="true" comment="Custom HTML content wrapper settings"/>
+        <column xsi:type="text" name="content" nullable="true" comment="HTML content"/>
+        <column xsi:type="int" name="sort_order" padding="10" unsigned="true" nullable="false" default="0" comment="Sort Order"/>
+        <column xsi:type="varchar" name="store_id" nullable="true" default="0" comment="Store ID"/>
+        <column xsi:type="timestamp" name="creation_time" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Content Creation Time"/>
+        <column xsi:type="timestamp" name="update_time" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Content Modification Time"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false"
+                default="1" comment="Is Content Active"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="content_id"/>
+        </constraint>
+        <index referenceId="EMAIL_CONTENT_TITLE_IDENTIFIER" indexType="fulltext">
+            <column name="title"/>
+            <column name="identifier"/>
+        </index>
+    </table>
+</schema>

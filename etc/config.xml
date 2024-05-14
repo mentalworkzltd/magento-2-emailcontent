@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mwz_emailcontent>
+            <email_content>
+                <general>
+                    <isenabled>1</isenabled>
+                </general>
+                <content>
+                    <display_conditions>
+                        <product_attributes>size,color</product_attributes>
+                    </display_conditions>
+                    <wrapper>
+                        <tablewrapper>1</tablewrapper>
+                        <tablepadding>10</tablepadding>
+                        <tablemaxwidth>600px</tablemaxwidth>
+                    </wrapper>
+                </content>
+            </email_content>
+        </mwz_emailcontent>
+    </default>
+</config>
+

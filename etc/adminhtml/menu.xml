@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mentalworkz_EmailContent::emailcontent1" title="Targeted Email Content" translate="title" module="Mentalworkz_EmailContent" sortOrder="50" parent="Magento_Backend::content_elements" action="emailcontent/content/index" resource="Mentalworkz_EmailContent::emailcontent" />
+        <add id="Mentalworkz_EmailContent::emailcontent2" title="Targeted Email Content" translate="title" module="Mentalworkz_EmailContent" sortOrder="12" parent="Magento_Backend::marketing_communications" action="emailcontent/content/index" resource="Mentalworkz_EmailContent::emailcontent" />
+    </menu>
+</config>

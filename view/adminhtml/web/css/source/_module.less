@@ -1,0 +1,118 @@
+.emailcontent-content-edit {
+
+    #emailcontent_conditions {
+
+        .info {
+            margin-bottom: 30px;
+        }
+
+        .inner-wrapper {
+
+            h4 span {
+                display: inline-block;
+                padding: 0 5px;
+            }
+
+            ul.conditions {
+                list-style: none;
+
+                li:not(#conditions_template) {
+                    padding-bottom: 5px;
+                    margin-bottom: 15px;
+                    border-bottom: 1px dotted #ccc;
+
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+
+                    .condition {
+                        display: inline-block;
+                        margin-bottom: 10px;
+
+                        label, select, input, span {
+                            display: inline-block;
+                            vertical-align: top;
+                        }
+                        label {
+                            display: inline-block;
+                            padding-right: 10px;
+                            width: 165px;
+                        }
+                        .value {
+                            &.error {
+                                border: 2px solid #EE0000;
+                            }
+                        }
+                        span.validation_message {
+                            color: #EE0000;
+                            display: block;
+                            margin-right: 15px;
+                            text-align: right;
+                        }
+
+                        .subcondition {
+                            &:first-child {
+                                margin: 0 55px 0 0!important;
+
+                                label {
+                                    display:inline-block;
+                                }
+                                .remove_condition {
+                                    display: none;
+                                }
+                            }
+
+                            margin-left: 165px;
+                            margin-top: 10px;
+
+                            label {
+                                display: none;
+                            }
+                        }
+                        .subconditionchooser {
+                            border-top: 1px dashed #ccc;
+                            margin-left: 165px;
+                            margin-top: 10px;
+                            padding-top: 5px;
+                        }
+                    }
+
+                    a.remove_condition {
+                        display: inline-block;
+                        margin-left: 10px;
+                        vertical-align: top;
+                    }
+                }
+            }
+        }
+    }
+
+    #emailcontent_tablewrapper {
+        .wrapper_toggle {
+            .field_label,
+            .admin__field-tooltip {
+                display: inline-block;
+            }
+            .field_label {
+                margin-bottom: 10px;
+            }
+            .admin__field-tooltip {
+                margin-left: 150px;
+                margin-top: -5px;
+            }
+        }
+        ul {
+            list-style: none;
+
+            li {
+                &.custom {
+                    display: none;
+
+                    p span {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

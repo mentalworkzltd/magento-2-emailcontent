@@ -1,0 +1,41 @@
+{
+    "email_content": {
+        "column": {
+            "content_id": true,
+            "title": true,
+            "identifier": true,
+            "description": true,
+            "customer_group_ids": true,
+            "from_date": true,
+            "to_date": true,
+            "conditions_serialized": true,
+            "content": true,
+            "content_wrapper": true,
+            "sort_order": true,
+            "store_id": true,
+            "creation_time": true,
+            "update_time": true,
+            "is_active": true
+        },
+        "index": {
+            "EMAIL_CONTENT_TITLE_IDENTIFIER": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "email_content_store": {
+        "column": {
+            "content_id": true,
+            "store_id": true
+        },
+        "index": {
+            "EMAIL_CONTENT_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "EMAIL_CONTENT_STORE_CONTENT_ID_EMAIL_CONTENT_CONTENT_ID": true,
+            "EMAIL_CONTENT_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}
